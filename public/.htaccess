@@ -1,0 +1,104 @@
+# ==============================================================
+# AUSALI SOLUTIONS — Apache configuration
+# ==============================================================
+
+# ---------- Security headers ----------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # Do not let proxies sniff or leak the source of prerendered SEO pages
+  Header unset X-Powered-By
+  Header always unset X-Powered-By
+
+  # ---------- SEO / crawler signals ----------
+  # Let crawlers fetch assets without a crossorigin mismatch
+  <FilesMatch "\.(png|jpe?g|webp|svg|ico|gif)$">
+    Header set Cross-Origin-Resource-Policy "cross-origin"
+  </FilesMatch>
+</IfModule>
+
+# ---------- MIME types ----------
+<IfModule mod_mime.c>
+  AddType image/svg+xml        .svg
+  AddType image/webp           .webp
+  AddType image/x-icon         .ico
+  AddType application/manifest+json  .webmanifest
+  AddType application/xml      .xml
+  AddType text/plain           .txt
+  AddCharset UTF-8             .html .css .js .json .xml .txt .svg .webmanifest
+</IfModule>
+
+# ---------- Compression ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/manifest+json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+</IfModule>
+
+# ---------- Browser caching ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                        "access plus 1 month"
+  ExpiresByType text/html               "access plus 0 seconds"
+  ExpiresByType application/manifest+json "access plus 1 week"
+  ExpiresByType text/xml                "access plus 2 days"
+  ExpiresByType application/xml         "access plus 2 days"
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType image/x-icon            "access plus 1 year"
+  ExpiresByType font/ttf                "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType text/css                "access plus 1 year"
+</IfModule>
+
+# ---------- Caching (belt and braces alongside Expires) ----------
+<IfModule mod_headers.c>
+  <FilesMatch "\.(png|jpe?g|webp|svg|ico|gif|woff2?|ttf|css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Never cache the admin area
+  <FilesMatch "admin">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, private"
+    Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+  </FilesMatch>
+</IfModule>
+
+# ---------- Default document ----------
+DirectoryIndex index.html index.php
+
+# ---------- SPA routing ----------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # API endpoints must never fall through to the SPA
+  RewriteRule ^api/ - [L]
+
+  # Serve real files (robots.txt, sitemap.xml, favicon.ico, prerendered
+  # /about/index.html, /contact/index.html, ...) directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Normalise prerendered routes to their canonical, non-trailing-slash form
+  # so /about/ and /about never compete as separate URLs
+  RewriteRule ^(about|home-package|projects|contact|admin)/$ /$1 [R=301,L]
+
+  # Everything else is a client-side route
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# ---------- Error documents ----------
+ErrorDocument 404 /index.html
+
+# ---------- Disable directory listing ----------
+Options -Indexes

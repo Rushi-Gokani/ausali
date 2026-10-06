@@ -1,0 +1,129 @@
+.home-package-overview {
+  padding: 100px 0;
+  background-color: var(--color-surface-light);
+  color: var(--color-text-dark);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--color-brand-tint);
+  border-bottom: 1px solid var(--color-brand-tint);
+}
+
+.overview-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+
+.overview-layout-grid {
+  display: grid;
+  grid-template-columns: minmax(330px, 1fr) minmax(500px, 1.8fr);
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+}
+
+.overview-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding-right: 2rem;
+}
+
+.overview-sub-title {
+  font-family: var(--font-family-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.overview-main-heading {
+  font-family: var(--font-family-sans);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--color-text-dark);
+  margin: 0 0 1.5rem 0;
+  text-transform: uppercase;
+}
+
+.overview-accent-bar {
+  width: 48px;
+  height: 2px;
+  background-color: var(--color-brand-blue);
+  margin-bottom: 1.5rem;
+}
+
+.overview-intro-text {
+  font-family: var(--font-family-sans);
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--color-text-light);
+  margin: 0 0 2.5rem 0;
+  max-width: 460px;
+}
+
+.btn-plan-package {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 28px;
+  background-color: var(--color-brand-blue);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-family-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-transform: uppercase;
+}
+
+.btn-plan-package:hover {
+  background-color: #1a56b3; /* Slightly darker blue */
+  transform: translateY(-2px);
+}
+
+.btn-plan-package .btn-arrow-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.btn-plan-package:hover .btn-arrow-right {
+  transform: translateX(4px);
+}
+
+.overview-right-col {
+  width: 100%;
+}
+
+/* Reusing some classes from index.css for the sketch card */
+/* If the sketch-display-card styles from index.css apply, they will automatically be used since they are globally defined in index.css */
+
+@media (max-width: 1024px) {
+  .overview-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .overview-left-col {
+    padding-right: 0;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-package-overview {
+    margin-top: -30svh;
+    position: relative;
+    z-index: 10;
+  }
+}

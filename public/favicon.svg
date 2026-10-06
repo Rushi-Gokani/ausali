@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 512 512" role="img" aria-label="AUSALI Solutions">
+  <title>AUSALI Solutions</title>
+  <rect width="512" height="512" rx="96" fill="#020910"/>
+  <path fill="#0072FC" fill-rule="evenodd" d="M256 88 432 424H80L256 88Zm0 144 96 168H160l96-168Z"/>
+  <path fill="#0072FC" d="M188 296h136v40H188z"/>
+</svg>

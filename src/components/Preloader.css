@@ -1,0 +1,225 @@
+/* ==========================================================================
+   AUSALI SOLUTIONS — GRACEFUL SEQUENTIAL OUTLINE & FILL PRELOADER
+   ========================================================================== */
+
+.ausali-minimal-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #020d18;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: all;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.85s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.85s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.ausali-minimal-preloader.fade-out {
+  opacity: 0;
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+/* Center Logo Container */
+.preloader-logo-container {
+  position: relative;
+  width: 88vw;
+  max-width: 780px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+
+/* Soft Ambient Illumination */
+.logo-soft-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 360px;
+  height: 220px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(13, 126, 227, 0.2) 0%, rgba(2, 13, 24, 0) 70%);
+  filter: blur(45px);
+  pointer-events: none;
+  opacity: 0;
+  animation: softGlowReveal 2s ease 1.6s forwards;
+}
+
+@keyframes softGlowReveal {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.ausali-clean-svg {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45));
+}
+
+/* Base Stroke Properties */
+.craft-path {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  fill-opacity: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* ==========================================================================
+   KEYFRAME SEQUENCES
+   ========================================================================== */
+
+/* White Elements: Upper Emblem Blade & AUSALI Letters */
+@keyframes craftDrawWhite {
+  0% {
+    stroke-dashoffset: 2000;
+    stroke: #ffffff;
+    stroke-width: 2.5;
+    fill-opacity: 0;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    stroke: #ffffff;
+    stroke-width: 2.5;
+    fill-opacity: 0;
+  }
+  75% {
+    stroke-dashoffset: 0;
+    stroke: #ffffff;
+    stroke-width: 1.2;
+    fill-opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke: #ffffff;
+    stroke-width: 0;
+    fill-opacity: 1;
+  }
+}
+
+/* Brand Blue Elements: Lower Blade & SOLUTIONS Subtitle */
+@keyframes craftDrawBlue {
+  0% {
+    stroke-dashoffset: 2000;
+    stroke: #0d7ee3;
+    stroke-width: 2.5;
+    fill-opacity: 0;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    stroke: #0d7ee3;
+    stroke-width: 2.5;
+    fill-opacity: 0;
+  }
+  75% {
+    stroke-dashoffset: 0;
+    stroke: #0d7ee3;
+    stroke-width: 1.2;
+    fill-opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke: #0d7ee3;
+    stroke-width: 0;
+    fill-opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   STAGGERED CHOREOGRAPHY (Feels like completing the logo naturally)
+   ========================================================================== */
+
+/* 1. Emblem Wings */
+.emblem-top {
+  stroke: #ffffff;
+  fill: #ffffff;
+  animation: craftDrawWhite 2.6s cubic-bezier(0.25, 1, 0.5, 1) 0.1s forwards;
+}
+
+.emblem-bottom {
+  stroke: #0d7ee3;
+  fill: #0d7ee3;
+  animation: craftDrawBlue 2.6s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
+}
+
+/* 2. AUSALI Wordmark Letters (Left to Right flowing drawing) */
+.letter-a1 {
+  stroke: #ffffff;
+  fill: #ffffff;
+  animation: craftDrawWhite 2.4s cubic-bezier(0.25, 1, 0.5, 1) 0.4s forwards;
+}
+
+.letter-u {
+  stroke: #ffffff;
+  fill: #ffffff;
+  animation: craftDrawWhite 2.4s cubic-bezier(0.25, 1, 0.5, 1) 0.55s forwards;
+}
+
+.letter-s {
+  stroke: #ffffff;
+  fill: #ffffff;
+  animation: craftDrawWhite 2.4s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards;
+}
+
+.letter-a2 {
+  stroke: #ffffff;
+  fill: #ffffff;
+  animation: craftDrawWhite 2.4s cubic-bezier(0.25, 1, 0.5, 1) 0.85s forwards;
+}
+
+.letter-l {
+  stroke: #ffffff;
+  fill: #ffffff;
+  animation: craftDrawWhite 2.4s cubic-bezier(0.25, 1, 0.5, 1) 1.0s forwards;
+}
+
+.letter-i {
+  stroke: #ffffff;
+  fill: #ffffff;
+  animation: craftDrawWhite 2.4s cubic-bezier(0.25, 1, 0.5, 1) 1.15s forwards;
+}
+
+/* 3. SOLUTIONS Subtitle */
+.subtitle-path {
+  stroke: #0d7ee3;
+  fill: #0d7ee3;
+  animation: craftDrawBlue 2.4s cubic-bezier(0.25, 1, 0.5, 1) 0.9s forwards;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .preloader-logo-container {
+    width: 90vw;
+    max-width: 520px;
+    padding: 16px;
+  }
+
+  .craft-path {
+    stroke-width: 3.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .preloader-logo-container {
+    width: 92vw;
+    max-width: 390px;
+    padding: 12px;
+  }
+
+  .craft-path {
+    stroke-width: 3.6;
+  }
+}
+
