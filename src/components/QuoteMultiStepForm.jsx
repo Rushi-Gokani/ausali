@@ -17,6 +17,13 @@ import needPedestrianGateImg from '../../need/Copy of Pedestrian Gate Final.png'
 import needSlidingGateImg from '../../need/Copy of Sliding Gate Final.png';
 import needUtilityImg from '../../need/Copy of utility enclosure final.png';
 import needWindowShadeImg from '../../need/Window Shade_.png';
+import horizontalSlatsStyleImg from '../../styles/Horizontal slat final.png';
+import verticalSlatsStyleImg from '../../styles/Vertical Slat.png';
+import battenStyleImg from '../../styles/Batten Style Final.png';
+import louvreStyleImg from '../../styles/Fixed Louvre Style.png';
+import flatBarStyleImg from '../../styles/Flat Bar Style.png';
+import hamptonStyleImg from '../../styles/Hampton Style.png';
+import customDesignStyleImg from '../../styles/Custom Designs_.png';
 import timberBlackWengeImg from '../../finishing/Black Wenge.png';
 import timberGreyAshImg from '../../finishing/Grey Ash.png';
 import timberHinokiImg from '../../finishing/Hinoki.png';
@@ -115,16 +122,16 @@ const products = [
 ];
 
 const styleOptions = [
-  { id: 'horizontal-slats', title: 'Horizontal Slats', description: 'Clean, modern and timeless.', image: screenImg },
-  { id: 'vertical-slats', title: 'Vertical Slats', description: 'Bold lines with modern appeal.', image: frontFenceImg },
-  { id: 'batten-style', title: 'Batten Style', description: 'Architectural and premium.', image: facadeImg },
-  { id: 'louvre', title: 'Louvre', description: 'Screening with airflow.', image: slidingGateImg },
+  { id: 'horizontal-slats', title: 'Horizontal Slats', description: 'Clean, modern and timeless.', image: horizontalSlatsStyleImg },
+  { id: 'vertical-slats', title: 'Vertical Slats', description: 'Bold lines with modern appeal.', image: verticalSlatsStyleImg },
+  { id: 'batten-style', title: 'Batten Style', description: 'Architectural and premium.', image: battenStyleImg },
+  { id: 'louvre', title: 'Louvre', description: 'Screening with airflow.', image: louvreStyleImg },
   { id: 'cnc-decorative', title: 'CNC Decorative Screen', description: 'Custom designs for a unique look.', image: decorativeImg },
-  { id: 'hampton', title: 'Hampton Style', description: 'Classic coastal aesthetic.', image: boundaryImg },
-  { id: 'flat-bar', title: 'Flat Bar Style', description: 'Sleek and contemporary.', image: entryImg },
+  { id: 'hampton', title: 'Hampton Style', description: 'Classic coastal aesthetic.', image: hamptonStyleImg },
+  { id: 'flat-bar', title: 'Flat Bar Style', description: 'Sleek and contemporary.', image: flatBarStyleImg },
   { id: 'minimal-solid', title: 'Minimal / Solid Panel', description: 'Clean lines with a bold look.', image: slidingGateImg },
   { id: 'address-feature', title: 'Address Feature', description: 'Letterboxes, house numbers and more.', image: entryImg },
-  { id: 'custom-design', title: 'Custom Design', description: "Have something unique in mind? Let's create it.", image: decorativeImg },
+  { id: 'custom-design', title: 'Custom Design', description: "Have something unique in mind? Let's create it.", image: customDesignStyleImg },
 ];
 
 const colours = [
